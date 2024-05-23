@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Page</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        nav {
+            background-color: maroon;
+            inset: 20px 0px 30px;
+            height: 100vh;
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .lbm {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        .logo .logo-image {
+            height: 50px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .logo .logo-image img {
+            height: 50px;
+        }
+
+        .logo_description {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 20px;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .logo_header {
+            font-size: 25px;
+            font-weight: bolder;
+            font-display: block;
+            text-transform: uppercase;
+            color: black;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .navcontents {
+            margin-top: 20px;
+            border-radius: 15px;
+            border: 1px solid #000;
+            background-color: sandybrown;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navsupport {
+            margin-top: 20px;
+            border-radius: 15px;
+            border: 1px solid #000;
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navmenu ul,
+        .navsupport ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navmenu ul li,
+        .navsupport ul li {
+            margin-bottom: 15px;
+        }
+
+        .navmenu a,
+        .navsupport a {
+            text-decoration: none;
+            color: #333;
+            font-weight: normal;
+            color: black;
+        }
+
+        .navmenu a.active {
+            text-decoration: underline;
+            color: blue;
+        }
+
+        .support-container {
+            margin-left: 270px;
+            padding: 40px;
+            margin-top: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .support-container h1 {
+            color: saddlebrown;
+            border-bottom: 2px solid saddlebrown;
+            padding-bottom: 20px;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .support-container h2 {
+            margin-top: 40px;
+            color: #555;
+            font-size: 24px;
+        }
+
+        .support-container ul {
+            margin-top: 20px;
+            list-style-type: none;
+        }
+
+        .support-container ul li {
+            margin-top: 15px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .support-container p {
+            margin-top: 20px;
+            line-height: 1.8;
+            font-size: 16px;
+            color: #666;
+        }
+
+        button {
+            margin-top: 40px;
+            background-color: saddlebrown;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #8b4513;
+        }
+
+        .responsive-logo-section {
+            display: none;
+            background: maroon;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .responsive-logo {
+            background: #fff;
+            border-radius: 10px;
+            margin-left: 2rem;
+            margin-right: 2rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: row;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .responsive-logo .responsive-logo-image {
+            height: 50px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .responsive-logo .responsive-logo-image img {
+            height: 50px;
+            margin-left: 5px;
+        }
+
+        .responsive-logo-description {
+            font-weight: bold;
+            font-size: 20px;
+            align-items: center;
+            text-align: center;
+            color: black;
+        }
+
+        .responsive-navbar {
+            background-color: maroon;
+            inset: 20px 0px 30px;
+            max-height: 85vh;
+            width: 35rem;
+            font-size: 18px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            position: fixed;
+            top: 14rem;
+            left: 100%;
+            z-index: 1001;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .responsive-library-navigation {
+            margin-bottom: 30rem;
+            margin-top: 8rem;
+        }
+
+        .responsive-navcontents {
+            margin-top: 20px;
+            border-radius: 15px;
+            border: 1px solid #000;
+            background-color: darkorange;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .responsive-navsupport {
+            margin-top: 20px;
+            border-radius: 15px;
+            border: 1px solid #000;
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .responsive-navmenu ul,
+        .responsive-navsupport ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .responsive-navmenu ul li,
+        .responsive-navsupport ul li {
+            margin-bottom: 15px;
+        }
+
+        .responsive-navmenu a,
+        .responsive-navsupport a {
+            text-decoration: none;
+            color: #333;
+            font-weight: normal;
+            color: black;
+        }
+
+        .responsive-navmenu a.active {
+            text-decoration: underline;
+            color: blue;
+        }
+
+        @media(max-width:991px) {
+            html {
+                font-size: 50%;
+            }
+        }
+
+        @media(max-width:768px) {
+            body {
+                overflow-x: hidden;
+            }
+
+            .library-navigation {
+                display: none;
+            }
+
+            .responsive-logo-section {
+                display: block;
+            }
+
+            .support-container {
+                margin-left: 0;
+            }
+            .responsive-navbar.active {
+                    left: 0;
+                    font-size: 18px;
+                    z-index: 1;
+                    width: 35rem;
+            }
+
+            .home {
+                font-size: 18px;
+            }
+        }
+
+        @media(max-width:450px) {
+            html {
+                font-size: 50%;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<section>
+        <nav class="library-navigation">
+            <div class="lbm">
+                <div class="logo">
+                    <div class="logo-image">
+                        <img src="{{url_for('static', filename='/Images/rafiki-logo-half-page-width.jpg')}}">
+                    </div>
+                    <div class="logo_description">
+                        <p class="logo_header">RTRC Library</p>
+                    </div>
+                </div>
+
+                <div class="navcontents">
+                    <div class="navmenu">
+                        <ul>
+                            <li><a href="/home" class="{% if active_page == 'home' %}active{% endif %}"><i class="fas fa-search"></i> Discover</a></li>
+                            <li><a href="/library" class="{% if active_page == 'library' %}active{% endif %}"><i class="fas fa-book"></i> My Library</a></li>
+                            <li><a href="/favourites" class="{% if active_page == 'favourites' %}active{% endif %}"><i class="fas fa-heart"></i> Favourites</a></li>
+                            <li><a href="/borrowedBooks" class="{% if active_page == 'borrowedBooks' %}active{% endif %}"><i class="fas fa-book-reader"></i> Borrowed books</a></li>
+                            <li><a href="#" class="{% if active_page == 'requestBook' %}active{% endif %}"><i class="fas fa-bookmark"></i> Request a book</a></li>
+                            <li><a href="#" class="{% if active_page == 'archives' %}active{% endif %}"><i class="fas fa-archive"></i> Archives</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+<section class="responsive-logo-section">
+    <div class="responsive-logo">
+        <div class="responsive-logo-image">
+          <img src="{{url_for('static', filename='/Images/RTRC-Logo-No-Background-300x113 .png')}}">
+        </div>
+        <div class="responsive-logo-description">
+          <p class="responsive-logo-header">Rarieda Technical And Resource Center Library</p>
+        </div>
+    </div>
+</section>
+
+<section class="responsive-navbar">
+    <span class="closeBtn" style="color: #fff; font-size: 30px; text-align: center; font-weight: bold;">&times</span>
+    <div class="responsive-library-navigation">
+        <div class="responsive-navcontents">
+            <div class="responsive-navmenu">
+                <ul>
+                    <li><a href="/home" class="{% if active_page == 'home' %}active{% endif %}"><i class="fas fa-search"></i> Discover</a></li>
+                    <li><a href="/library" class="{% if active_page == 'library' %}active{% endif %}"><i class="fas fa-book"></i> My Library</a></li>
+                    <li><a href="/favourites" class="{% if active_page == 'favourites' %}active{% endif %}"><i class="fas fa-heart"></i> Favourites</a></li>
+                    <li><a href="/borrowedBooks" class="{% if active_page == 'borrowedBooks' %}active{% endif %}"><i class="fas fa-book-reader"></i> Borrowed books</a></li>
+                    <li><a href="/history" class="{% if active_page == 'requestBook' %}active{% endif %}"><i class="fas fa-bookmark"></i> Borrowing History</a></li>
+                    <li><a href="#" class="{% if active_page == 'archives' %}active{% endif %}"><i class="fas fa-archive"></i> Archives</a></li>
+                </ul>
+            </div>
+            <div class="logout">
+              <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="fas fa-bars" id="user-menu-btn" style="margin-right: 2rem; font-size: 18px; float: right; background: orange; margin-top: 1rem; padding: 5px;"></div>
+
+<div class="support-container">
+    <h1>Support Page</h1>
+    
+    <h2>Borrowing Policies</h2>
+    <ul>
+        <li><strong>Loan Period:</strong> Books can be borrowed for 14 days.</li>
+        <li><strong>Renewals:</strong> You can renew your books up to 2 times.</li>
+        <li><strong>Overdue Fees:</strong> Late fees are Kshs 10 per day per item.</li>
+    </ul>
+    
+    <h2>Reserving Books</h2>
+    <p>To reserve a book that is currently checked out, please visit our online catalog or contact the library staff.</p>
+
+    <h2>Digital Resources</h2>
+    <ul>
+        <li><strong>E-books:</strong> Access our collection of e-books through our online catalog.</li>
+        <li><strong>Online Databases:</strong> Explore our databases for research and academic resources.</li>
+        <li><strong>Remote Access:</strong> Most of our digital resources can be accessed remotely with your library account.</li>
+    </ul>
+
+    <h2>Contact Information</h2>
+    <p>If you have any questions or need assistance, please contact us.</p>
+    <ul>
+        <li><strong>Email:</strong> felixogweny@gmail.com</li>
+        <li><strong>Phone:</strong> +254-740-448-956</li>
+        <li><strong>Address:</strong> P.O Box 75. Bondo, Kenya</li>
+    </ul>
+
+    <button onclick="redirectToHome()" class="home">Go to Home</button>
+</div>
+
+<!-- <script type="text/javascript" src="{{url_for('static', filename='app.js')}}"></script> -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let fixedNavbar = document.querySelector(".responsive-navbar");
+    document.getElementById("user-menu-btn").onclick = () => {
+        fixedNavbar.classList.toggle('active');
+    }
+
+    window.onscroll = () => {
+        fixedNavbar.classList.remove('active');
+    }
+
+    document.querySelector(".closeBtn").onclick = () => {
+        fixedNavbar.classList.remove('active');
+    }
+
+    function redirectToHome() {
+        window.location.href = "/home";
+    }
+})
+</script>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>RTRC | {% block title %}{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='user.css')}}">
+  <link rel="icon" href="{{ url_for('static', filename='/Images/favicon.ico') }}" type="image/x-icon">
+	<link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<section>
+  	<nav class="library-navigation">
+    		<div class="lbm">
+      			<div class="logo">
+                <div class="logo-image">
+      				      <img src="{{url_for('static', filename='/Images/RTRC-Logo-No-Background-300x113 .png')}}">
+                </div>
+    		        <div class="logo_description">
+    			          <p class="logo_header">RTRC Library</p>
+    		        </div>
+      			</div>
+
+      			<div class="navcontents">
+        				<div class="navmenu">
+          					<ul>
+          					    <li><a href="/home" class="{% if active_page == 'home' %}active{% endif %}"><i class="fas fa-search"></i> Discover</a></li>
+                        <li><a href="/library" class="{% if active_page == 'library' %}active{% endif %}"><i class="fas fa-book"></i> My Library</a></li>
+                        <li><a href="/favourites" class="{% if active_page == 'favourites' %}active{% endif %}"><i class="fas fa-heart"></i> Favourites</a></li>
+                        <li><a href="/borrowedBooks" class="{% if active_page == 'borrowedBooks' %}active{% endif %}"><i class="fas fa-book-reader"></i> Borrowed books</a></li>
+                        <li><a href="/history" class="{% if active_page == 'requestBook' %}active{% endif %}"><i class="fas fa-bookmark"></i> Borrowing History</a></li>
+                        <li><a href="#" class="{% if active_page == 'archives' %}active{% endif %}"><i class="fas fa-archive"></i> Archives</a></li>
+          				  </ul>
+        				</div>
+              <div class="logout">
+                <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+              </div>
+      			</div>
+    		</div>
+  	</nav>
+</section>
+
+<section class="responsive-logo-section">
+  <div class="responsive-logo">
+    <div class="responsive-logo-image">
+      <img src="{{url_for('static', filename='/Images/RTRC-Logo-No-Background-300x113 .png')}}">
+    </div>
+    <div class="responsive-logo-description">
+      <p class="responsive-logo-header">Rarieda Technical And Resource Center Library</p>
+    </div>
+  </div>
+</section>
+
+<section class="responsive-navbar">
+  <span class="closeBtn" style="color: #fff; font-size: 30px; text-align: center; font-weight: bold;">&times</span>
+  <div class="responsive-library-navigation">
+    <div class="responsive-navcontents">
+      <div class="responsive-navmenu">
+          <ul>
+              <li><a href="/home" class="{% if active_page == 'home' %}active{% endif %}"><i class="fas fa-search"></i> Discover</a></li>
+              <li><a href="/library" class="{% if active_page == 'library' %}active{% endif %}"><i class="fas fa-book"></i> My Library</a></li>
+              <li><a href="/favourites" class="{% if active_page == 'favourites' %}active{% endif %}"><i class="fas fa-heart"></i> Favourites</a></li>
+              <li><a href="/borrowedBooks" class="{% if active_page == 'borrowedBooks' %}active{% endif %}"><i class="fas fa-book-reader"></i> Borrowed books</a></li>
+              <li><a href="/history" class="{% if active_page == 'requestBook' %}active{% endif %}"><i class="fas fa-bookmark"></i> Borrowing History</a></li>
+              <li><a href="#" class="{% if active_page == 'archives' %}active{% endif %}"><i class="fas fa-archive"></i> Archives</a></li>
+          </ul>
+      </div>
+    <div class="logout">
+      <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- <div class="scroll-to-top-popup">
+    <button id="scrollToTopBtn">↑</button>
+</div> -->
+
+
+<div class="flash-messages-container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          {% if category == "error" %}
+            <div class="flash-message {{ category }}" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;">
+          {% elif category == "info" %}
+            <div class="flash-message {{ category }}" style="background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb;">
+          {% elif category == "warning" %}
+            <div class="flash-message {{ category }}" style="background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba;">
+          {% else %}
+            <div class="flash-message {{ category }}" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;">
+          {% endif %}
+              <div class="message-content">
+                {{ message }}
+                <button type="button" class="close" onclick="this.parentElement.parentElement.style.display='none';">
+                  <span aria-hidden="true" style="margin-left: 1rem">&times;</span>
+                </button>
+              </div>
+            </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+</div>
+
+
+
+{% block content %}
+{% endblock %}
+	
+
+<footer class="site-footer">
+        <div class="contact-us">
+            <!-- <i class="fa fa-copyright" style="margin-right: 0.5rem; align-self: center;"></i>
+            <p style="margin-right: 0.5rem; margin-left: 0.3rem;">Rafiki Wa Maendeleo 2024</p> -->
+            <a href="mailto:felixogweny@gmail.com" style="margin-right: 0.5rem;"><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i>felixogweny@gmail.com</a>
+            <a href="#" style="margin-right: 0.5rem;"><i class="fab fa-facebook" style="margin-right: 0.5rem;"></i></a>
+            <a href="#" style="margin-right: 0.5rem;"><i class="fab fa-twitter" style="margin-right: 0.5rem;"></i></a>
+            <a href="#" style="margin-right: 0.5rem;"><i class="fab fa-instagram" style="margin-right: 0.5rem;"></i></a>
+        </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{url_for('static', filename='app.js')}}"></script>
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', () => {
+    // window.addEventListener('scroll', () => {
+    //     const header = document.querySelector('.fixed-navbar');
+    //     const homeSectionLogo = document.getElementById('removable-navbar');
+    //     // const welcomeMessageBottom = welcomeMessage.getBoundingClientRect().bottom;
+
+    //     const scrollPosition = window.scrollY;
+        
+    //     // Calculate the bottom position of the welcome message dynamically
+    //     const welcomeMessageBottom = homeSectionLogo.getBoundingClientRect().bottom;
+        
+    //     // Check if the scroll position is below the bottom of the welcome message
+    //     if (scrollPosition >= welcomeMessageBottom) {
+    //         header.classList.add('show');
+    //     } else {
+    //         header.classList.remove('show');
+    //     }
+
+    //     const scrollToTopPopup = document.querySelector('.scroll-to-top-popup');
+
+    //     // const scrollPosition = window.scrollY;
+        
+    //     // Check if the scroll position is below the header to show the popup
+    //     if (scrollPosition > header.offsetHeight) {
+    //         scrollToTopPopup.style.display = 'block';
+    //     } else {
+    //         scrollToTopPopup.style.display = 'none';
+    //     }
+    // });
+
+    // const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    // scrollToTopBtn.addEventListener('click', () => {
+    //     window.scrollTo({
+    //         top: 0,
+    //         behavior: 'smooth'
+    //     });
+    // });
+  })
+</script>
+</body>
+</html>

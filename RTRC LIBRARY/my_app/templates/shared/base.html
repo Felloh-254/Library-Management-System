@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>RTRC {% block title %}{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base_shared.css')}}">
+		<link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>
+<section class="site_header" style="background: maroon; padding-top: 1rem; padding-bottom: 2rem;">
+    <div class="logo" id="removable-navbar">
+	      <img src="{{url_for('static', filename='/Images/RTRC-Logo-No-Background-300x113 .png')}}" id="home-section-logo-img">
+	      <div class="logo_content">
+	          <div class="logo_description">
+		            <p class="logo_header" style="display: flex; flex-direction: column;"> rarieda training and<span> resource center Library</span></p>
+	          </div>
+	          <div class="lib_nav_item">
+                <a href="/">Home</a>
+		            <a href="/login">Login</a>
+		            <a href="/signup">Signup</a>
+		            <!--<a href="/login">user login</a>-->
+	          </div>
+	      </div>
+    </div>
+</section>
+
+<section class="site_header fixed-navbar">
+    <div class="logo">
+        <img src="{{url_for('static', filename='/Images/RTRC-Logo-No-Background-300x113 .png')}}" id="home-section-logo-img">
+        <div class="logo_content">
+            <div class="logo_description">
+                <p class="logo_header" style="display: flex; flex-direction: column;"> rarieda training and<span> resource center Library</span></p>
+            </div>
+            <div class="lib_nav_item">
+                <a href="/">Home</a>
+                <a href="/login">Login</a>
+                <a href="/signup">Signup</a>
+                <!--<a href="/login">user login</a>-->
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="fixed-popup-nav">
+    <span aria-hidden="true" style="float: right; margin-right: 1rem; font-size: 25px; color: #fff; margin-bottom: 3rem">&times;</span>
+    <div class="hidden-container">
+        <div class="items">
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+            <a href="/signup">Signup</a>
+        </div>
+    </div>
+</div>
+
+<div class="fixed-floating-menu">
+    <div class="fas fa-bars" id="floating-menu-btn"></div>
+</div>
+
+<div class="scroll-to-top-popup">
+    <button id="scrollToTopBtn">↑</button>
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      {% if category == "error" %}
+        <div class="flash-message {{ category }}" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;">
+      {% elif category == "info" %}
+        <div class="flash-message {{ category }}" style="background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb;">
+      {% elif category == "warning" %}
+        <div class="flash-message {{ category }}" style="background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba;">
+      {% else %}
+        <div class="flash-message {{ category }}" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;">
+      {% endif %}
+          <div class="message-content">
+            {{ message }}
+            <button type="button" class="close" onclick="this.parentElement.parentElement.style.display='none';">
+              <span aria-hidden="true" style="margin-left: 1rem">&times;</span>
+            </button>
+          </div>
+        </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% block content %}
+{% endblock %}
+
+
+
+<footer class="site-footer">
+        <div class="contact-us">
+            <!-- <i class="fa fa-copyright" style="margin-right: 0.5rem; align-self: center;"></i>
+            <p style="margin-right: 0.5rem; margin-left: 0.3rem;">Rafiki Wa Maendeleo 2024</p> -->
+            <a href="mailto:felixogweny@gmail.com" style="margin-right: 0.5rem;"><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i>felixogweny@gmail.com</a>
+            <a href="#" style="margin-right: 0.5rem;"><i class="fab fa-facebook" style="margin-right: 0.5rem;"></i></a>
+            <a href="#" style="margin-right: 0.5rem;"><i class="fab fa-twitter" style="margin-right: 0.5rem;"></i></a>
+            <a href="#" style="margin-right: 0.5rem;"><i class="fab fa-instagram" style="margin-right: 0.5rem;"></i></a>
+        </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('scroll', () => {
+        const header = document.querySelector('.fixed-navbar');
+        const homeSectionLogo = document.getElementById('removable-navbar');
+        // const welcomeMessageBottom = welcomeMessage.getBoundingClientRect().bottom;
+
+        const scrollPosition = window.scrollY;
+        
+        // Calculate the bottom position of the welcome message dynamically
+        const welcomeMessageBottom = homeSectionLogo.getBoundingClientRect().bottom;
+        
+        // Check if the scroll position is below the bottom of the welcome message
+        if (scrollPosition >= welcomeMessageBottom) {
+            header.classList.add('show');
+        } else {
+            header.classList.remove('show');
+        }
+
+        const scrollToTopPopup = document.querySelector('.scroll-to-top-popup');
+
+        // const scrollPosition = window.scrollY;
+        
+        // Check if the scroll position is below the header to show the popup
+        if (scrollPosition > header.offsetHeight) {
+            scrollToTopPopup.style.display = 'block';
+        } else {
+            scrollToTopPopup.style.display = 'none';
+        }
+
+        const floatingMenu = document.querySelector('.floating-menu');
+        // Check if the scroll position is below the header to show the popup
+        if(scrollPosition > header.offsetHeight) {
+            floatingMenu.style.display = 'block';
+        } else {
+            floatingMenu.style.display = 'none';
+        }
+    });
+
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    let fixedNavbar = document.querySelector(".fixed-popup-nav");
+    document.getElementById("floating-menu-btn").onclick = () => {
+        fixedNavbar.classList.toggle('active');
+    }
+
+    window.onscroll = () => {
+        fixedNavbar.classList.remove('active');
+    }
+
+    document.querySelector(".closeBtn").onclick = () => {
+        fixedNavbar.classList.remove('active');
+    }
+});
+
+</script>
+</body>
+</html>

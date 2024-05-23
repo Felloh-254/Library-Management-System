@@ -1,0 +1,206 @@
+{% extends "/admin/base.html" %}
+{% block title %}Manage books{% endblock %}
+{% block content %}
+<section class="manage-books-section">
+    <div class="manageBooks_header">
+        <h4>Manage Books</h4>
+        <div class="action_btn">
+            <a href="/manageBooks/issuedBooks"><button>Issued Books</button></a>
+            <a href="/manageBooks/requestedBook"><button>Requested Books</button></a>
+            <a href="/manageBooks/issueBook"><button>Issue a Book</button></a>
+            <a href="/manageBooks/addBook"><button>Add a Book</button></a>
+        </div>
+    </div>
+    <hr>
+</section>
+
+<div id="flash-message" class="alert" style="display: none;"></div>
+
+
+<div id="custom-confirm" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="message">Are you sure you want to continue?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="confirm-yes" type="button" class="btn btn-primary">Yes</button>
+        <button id="confirm-no" type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section class="manage-books">
+    <div class="book_list_view">
+        <div class="heading">
+            <div class="table_head">
+                <h3>Book listings</h3>
+            </div>
+
+            <div class="book_search">
+                <div class="row_show">
+                    <div class="row">
+                        <select name="row_number" id="row_number" class="list">
+                            <option value="10" selected>10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                        </select>
+                        <label for="row_number" class="list_label" style="align-self: center;">records per page</label>
+                    </div>
+                </div>
+
+                <form method="POST" autocomplete="off" class="book_search">
+                    <div class="search_area">
+                        <div class="search_items">
+                            <label for="search_book_criteria" class="search_label" style="align-self: center;">Search By:</label>
+                            <select name="search_book_criteria" id="search_book_criteria" style="height: 36px; align-items: center; align-self: center; border: 1px solid #ccc; border-radius: 5px;">
+                                <option value="Title" id="Title" selected>Title</option>
+                                <option value="Author" id="Author">Author</option>
+                                <option value="ISBN" id="ISBN">ISBN No.</option>
+                                <option value="Category" id="Category">Category</option>
+                            </select>
+                            <input type="text" placeholder="Search for your books" name="search_field_content" id="search_field_content" required>
+                            <a href="/manageBooks" style="align-self: center;"><button class="search_book">Search</button></a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="books_table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Book Title</th>
+                        <th>Author</th>
+                        <th>Total Copies</th>
+                        <th>Issued Copies</th>
+                        <th>ISBN No.</th>
+                        <th>Availability</th>
+                        <th>Category</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="book_data">
+                    {% if filtered_books is defined and filtered_books %}
+                    {% for book in filtered_books %}
+                    <tr>
+                        <td><ol><li>{{ loop.index }}</li></ol></td>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.copies }}</td>
+                        <td>{{ book.issued }}</td>
+                        <td>{{ book.ISBN }}</td>
+                        <td>
+                        {% if book.copies is not none and book.issued is not none %}
+                        {% if book.copies > book.issued %}
+                            Available
+                        {% else %}
+                            Not Available
+                        {% endif %}
+                        {% else %}
+                            N/A
+                        {% endif %}
+                        </td>
+                        <td>{{ book.category.name }}</td>
+                        <td>
+                            <button class="edit_btn" onclick="showEditBookPopup({{ book.id }})">Edit</button>
+                            <button class="delete_btn" onclick="deleteBookWithConfirmation({{ book.id }})">Delete</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                    {% else %}
+
+                    {% for book in books %}
+                    <tr>
+                        <td><ol><li style="list-style: none">{{ loop.index }}</li></ol></td>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.copies }}</td>
+                        <td>{{ book.issued }}</td>
+                        <td>{{ book.ISBN }}</td>
+                        <td>
+                        {% if book.copies is not none and book.issued is not none %}
+                        {% if book.copies > book.issued %}
+                            Available
+                        {% else %}
+                            Not Available
+                        {% endif %}
+                        {% else %}
+                            N/A
+                        {% endif %}
+                        </td>
+                        <td>{{ book.category.name }}</td>
+                        <td class="button-actions">
+                            <button class="edit_btn" data-book-id="{{ book.id }}">Edit</button>
+                            <button class="delete_btn" onclick="deleteBookWithConfirmation({{ book.id }})">Delete</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <div class="switch_pages">
+            <div class="switch_btns">
+                <button class="previous" id="previousBtn">Prev</button>
+                <button class="next" id="nextBtn">Next</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="editBookModal" tabindex="-1" aria-labelledby="editBookModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editBookModalLabel">Edit Book Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editBookForm">
+                    <div class="mb-3">
+                        <label for="edit_book_title" class="form-label">Title:</label>
+                        <input type="text" class="form-control" id="edit_book_title" name="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_book_author" class="form-label">Author:</label>
+                        <input type="text" class="form-control" id="edit_book_author" name="author">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_book_isbn" class="form-label">ISBN:</label>
+                        <input type="text" class="form-control" id="edit_book_isbn" name="isbn">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_book_copies" class="form-label">Copies:</label>
+                        <input type="number" class="form-control" id="edit_book_copies" name="copies">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_book_category" class="form-label">Category:</label>
+                        <select class="form-control" id="edit_book_category" name="category"></select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+                        

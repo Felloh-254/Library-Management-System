@@ -1,0 +1,80 @@
+<!-- Partial template for searched books -->
+{% if filtered_books %}
+    {% for book in filtered_books %}
+        <div class="searched-books-display" id="searched-books-display">
+            <div class="searched-book-item">
+                <div class="searched-book-details">
+                    <p><b>Title</b>: {{ book.title }}</p>
+                    <p><b>Author</b>: {{ book.author }}</p>
+                    <p><b>Book NO</b>: {{ book.ISBN }}</p>
+                    <p><b>Availability</b>: {% if book.copies > 0 %} Available {% else %} Not Available {% endif %}</p>
+                    <div class="action_btns">
+                        <form action="{{ url_for('userView.request_book') }}" method="POST">
+                            <input type="hidden" name="book_id" value="{{ book.id }}">
+                            <button type="submit" name="action" value="request_book" id="action_btns_responsive">
+                                <div class="options" style="display: flex; flex-flow: row;">
+                                    <i class="fas fa-envelope white-fill"></i>
+                                    <h6 class="book-action-description">Request Book</h6>
+                                </div>
+                                <span class="tooltip">Request this book</span>
+                            </button>
+                        </form>
+
+                        <form action="{{ url_for('userView.toggle_favorite') }}" method="POST" style="margin-left: 1rem;">
+                            <input type="hidden" name="book_id" value="{{ book.id }}">
+                            <button type="submit" name="action" value="toggle_favorite" {% if book.id in favorite_book_ids %}class="in-favorites"{% endif %} id="action_btns_responsive">
+                                {% if book.id in favorite_book_ids%}
+                                    <div class="options" style="display: flex; flex-flow: row;">
+                                        <i class="fas fa-heart white-fill" style="color: black;"></i>
+                                        <h6 class="book-action-description">Remove From Favourite</h6>
+                                    </div>
+                                    <span class="tooltip">In Favorites</span>
+                                {% else %}
+                                    <div class="options" style="display: flex; flex-flow: row;">
+                                        <i class="fas fa-heart white-fill" style="align-self: center;"></i>
+                                        <h6 class="book-action-description">Add To Favourites</h6>
+                                    </div>
+                                    <span class="tooltip">Add to Favorites</span>
+                                {% endif %}
+                            </button>
+                        </form>
+
+                        <form action="{{ url_for('userView.toggle_library') }}" method="POST" style="margin-left: 1rem;">
+                            <input type="hidden" name="book_id" value="{{ book.id }}">
+                            <button type="submit" name="action" value="toggle_library" {% if book.id in library_book_ids %}class="in-library"{% endif %} id="action_btns_responsive">
+                                {% if book.id in library_book_ids %}
+                                    <div class="options" style="display: flex; flex-flow: row;">
+                                        <i class="fas fa-check-circle white-fill"></i>
+                                        <h6 class="book-action-description">Remove From Library</h6>
+                                    </div>
+                                    <span class="tooltip">In Library</span>
+                                {% else %}
+                                    <div class="options" style="display: flex; flex-flow: row;">
+                                        <i class="fas fa-plus-circle white-fill"></i>
+                                        <h6 class="book-action-description">Add To Library</h6>
+                                    </div>
+                                    <span class="tooltip">Add to Library</span>
+                                {% endif %}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="searched-book-preview-container">
+                    {% if book.book_preview_name %}
+                        <div class="searched-book-preview">
+                            <img src="{{ url_for('static', filename='Book_previews/' + book.book_preview_name) }}" alt="{{book.title}}">
+                        </div>
+                    {% else %}
+                        <div class="searched-book-preview">
+                            <h3>Preview not available</h3>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <section class="no-search-results">
+        <p style="color: white;">No search results found.</p>
+    </section>
+{% endif %}

@@ -1,0 +1,80 @@
+{% extends "/user/base.html" %}
+{% block title %}Borrowed Books{% endblock %}
+{% block content %}
+
+<section class="borrowed-books">
+    <div class="setting-support-container">
+        <div class="support-container-content">
+            <div class="notification">
+                <span><i class="fas fa-bell"></i></span>
+            </div>
+            <div class="user_details">
+                <div class="dropdown">
+                    <button class="dropbtn" style="padding-right: 0.3rem;"><i class="fas fa-cog"></i></button>
+                    <div class="dropdown-content">
+                        <div class="dropdown-content">
+                            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="/support"><i class="fas fa-question-circle"></i> Support</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user_image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user">
+                    {{user.name}}
+                </div>
+                <div class="fas fa-bars" id="user-menu-btn" style="margin-left: 2rem;"></div>
+            </div>
+        </div>
+    </div>
+    <p>To view your sent book requests <a href="/borrowedBooks/sentRequests">Click here</a></p>
+    <div class="borrowed-books-list">
+        <div class="heading">
+            <div class="table_head">
+                <h6>Below are your borrowed books</h6>
+            </div>
+        </div>
+
+        <div class="borrowed-books-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Book Title</th>
+                        <th>Book Number</th>
+                        <th>Date Issued</th>
+                        <th>Return Date</th>
+                        <th>Overdue Days</th>
+                        <th>Overdue Amount</th>
+                    </tr>
+                </thead>
+
+                <tbody id="borrowed-book-data">
+                    {% if borrowed_books %}
+                        {% for i in range(borrowed_books|length) %}
+                            {% set book = borrowed_books[i] %}
+                            {% set overdue_detail = overdue_details[i] %}
+                            <tr>
+                                <td></td>
+                                <td>{{ book.books.title }}</td>
+                                <td>{{ book.books.ISBN }}</td>
+                                <td>{{ book.issued_date }}</td>
+                                <td>{{ book.return_date }}</td>
+                                <td>{{ overdue_detail[0] }}</td> <!-- overdue_days -->
+                                <td>{{ overdue_detail[1] }}</td> <!-- overdue_amount -->
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="6">No books to show</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

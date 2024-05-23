@@ -1,0 +1,62 @@
+{% extends "/admin/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<section class="admin-panel-dash">
+<div class="admin-dash">
+	<div class="dash-items">
+		<div class="description">
+			<i class="fas fa-book"></i> 
+			<p>Books Listed</p>
+		</div>
+
+		<div class="count">
+			<p>{{ total_books }}</p>
+		</div>
+	</div>
+
+	<div class="dash-items">
+		<div class="description">
+			<i class="fas fa-book-reader"></i> 
+			<p>Issued Books</p>
+		</div>
+
+		<div class="count">
+			<p>{{ total_borrowed }}</p>
+		</div>
+	</div>
+
+	<div class="dash-items">
+		<div class="description">
+			<i class="fas fa-list-alt"></i> 
+			<p>Listed Categories</p>
+		</div>
+
+		<div class="count">
+			<p>{{ total_category }}</p>
+		</div>
+	</div>
+
+	<div class="dash-items">
+		<div class="description">
+			<i class="fas fa-users"></i> 
+			<p>Registered Users</p>
+		</div>
+
+		<div class="count">
+			<p>{{ total_user }}</p>
+		</div>
+	</div>
+
+	<div class="dash-items">
+		<div class="description">
+			<i class="fas fa-coins"></i> 
+			<p>Total Fine</p>
+		</div>
+
+		<div class="count">
+			<p>{{ total_overdue_amount }}</p>
+		</div>
+	</div>
+</div>
+</section>
+{% endblock %}

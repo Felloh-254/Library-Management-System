@@ -1,0 +1,114 @@
+{% extends "/shared/base.html" %}
+{% block title %}| signup{% endblock %}
+{% block content %}
+<form method="POST" autocomplete="off">
+<div class="login">
+    <div class="signup_container" id="signup">
+        <div class="form-header">
+            <h3>Signup</h3>
+        </div>
+        <label for="fname"><b>First Name*</b></label>
+        <input type="text" placeholder="Enter First Name" name="fname" id="fname" autofocus required>
+
+        <label for="sname"><b>Last Name*</b></label>
+        <input type="text" placeholder="Enter Last Name" name="sname" id="sname" autofocus required>
+
+        <label for="email"><b>Email*</b></label>
+        <input type="email" name="email" id="email" placeholder="youemail@example.com" autofocus required>
+
+        <label for="phone">Phone Number:</label><br>
+        <input type="tel" id="phone" name="phone" value="+254" maxlength="13"><br><br>
+
+        <label for="address">Address:</label><br>
+        <textarea class="address" id="address" name="address" rows="3"></textarea><br><br>
+
+        <label for="membership_type">Membership Type:</label><br>
+        <select class="membership" id="membership_type" name="membership_type">
+            <option value="student">Student</option>
+            <option value="staff">Staff</option>
+            <option value="community">Community Member</option>
+        </select><br><br>
+
+        <div class="form__input-group">
+            <label for="password"><b>Password*</b></label>
+            <div class="passwordToggle">
+                <input type="password" placeholder="Enter Password" name="password" id="password" class="form__input" autofocus required>
+                <span class="icon" id="togglePassword">
+                    <i class="fas fa-eye-slash"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form__input-group">
+            <label for="password1"><b>Confirm Password*</b></label>
+            <div class="passwordToggle">
+                <input type="password" placeholder="Enter Password" name="password1" id="password1" class="form__input" autofocus required>
+                <span class="icon" id="toggleConfirmPassword">
+                    <i class="fas fa-eye-slash"></i>
+                </span>
+                <div class="form__input-error-message"></div>
+            </div>
+        </div>
+
+        <div class="check">
+            <label>
+                <input type="checkbox" name="" required>
+                <span>I agree to the terms and conditions of RTRC Library</span>
+            </label>
+        </div>
+
+
+        <a href="#"><button type="submit" class="signup-btn">Sign Up</button></a>
+
+        <div class="switch">
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </div>
+    </div>
+</div>
+</form>
+
+<script type="text/javascript">
+    // Select the password input field and the eye icon
+const passwordInput = document.getElementById("password");
+const passwordInput1 = document.getElementById("password1")
+const togglePassword = document.getElementById("togglePassword");
+const toggleConfirmPassword = document.getElementById("toggleConfirmPassword");
+
+// Add click event listener to the eye icon
+togglePassword.addEventListener("click", function() {
+    // Check if the type of password input field is "password"
+    if (passwordInput.type === "password") {
+        // Change it to "text" to make the password visible
+        passwordInput.type = "text";
+        // Change the eye icon to an eye
+        togglePassword.innerHTML = '<i class="fas fa-eye"></i>';
+    } else {
+        // If it's already visible, change it back to "password"
+        passwordInput.type = "password";
+        // Change the eye icon back to a slash
+        togglePassword.innerHTML = '<i class="fas fa-eye-slash"></i>';
+    }
+});
+
+
+
+// Add click event listener to the eye icon for the confirm Password
+toggleConfirmPassword.addEventListener("click", function() {
+    // Check if the type of password input field is "password"
+    if (passwordInput1.type === "password") {
+        // Change it to "text" to make the password visible
+        passwordInput1.type = "text";
+        // Change the eye icon to an eye
+        togleConfirmPassword.innerHTML = '<i class="fas fa-eye"></i>';
+    } else {
+        // If it's already visible, change it back to "password"
+        passwordInput1.type = "password";
+        // Change the eye icon back to a slash
+        togleConfirmPassword.innerHTML = '<i class="fas fa-eye-slash"></i>';
+    }
+});
+
+</script>
+
+<!--required pattern="[a-zA-Z0-9._%+-]+@rafikiwamaendeleo\.org$"-->
+{% endblock %}
