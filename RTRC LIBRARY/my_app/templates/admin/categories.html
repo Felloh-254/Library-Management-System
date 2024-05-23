@@ -1,0 +1,156 @@
+{% extends "/admin/base.html" %}
+{% block title %}Categories{% endblock %}
+{% block content %}
+<section>
+	<div class="category_header">
+		<h4>Manage Categories</h4>
+        <div class="action_btn">
+	        <a href="/category/addCategory"><button>Add Book Categories</button></a>
+         </div>
+	</div>
+<hr>
+</section>
+
+<div id="category_popup_container" class="popup_container">
+    <div class="popup_content">
+        <span class="close_btn">&times;</span>
+        <h2>Create New Category</h2>
+        <form id="publication_form" method="POST" action="/category/addCategory">
+            <!-- form fields for adding a new publication -->
+            <input type="text" name="category_name" placeholder="Category Name" class="category_input">
+
+            <!-- Radio input for indicating category status -->
+            <div class="form-group">
+                <h3>Status:</h3>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category_status" id="active" value="true" checked>
+                    <label class="form-check-label" for="active">Active</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category_status" id="inactive" value="false">
+                    <label class="form-check-label" for="inactive">Inactive</label>
+                </div>
+            </div>
+            <button type="submit">Create</button>
+        </form>
+    </div>
+</div>
+
+
+<div id="custom-confirm" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="message">Are you sure you want to continue?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="confirm-yes" type="button" class="btn btn-primary">Yes</button>
+        <button id="confirm-no" type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<section class="manage-category">
+<div class="category_list_view">
+	<div class="heading">
+		<div class="table_head">
+			<h3>Categories listings</h3>
+		</div>
+
+		<div class="category_search">
+			<div class="row_show">
+				<div class="row">
+					<select name="row_number" id="row_number" class="list">
+						<option value="10">10</option>
+						<option value="9">9</option>
+						<option value="8">8</option>
+						<option value="7">7</option>
+						<option value="6">6</option>
+					</select>
+					<label for="row_number" class="list_label">records per page</label>
+				</div>
+			</div>
+
+			<form method="POST" autocomplete="off">
+                <div class="search_area">
+                    <div class="search_items">
+                        <label for="search_book_criteria" class="search_label" style="align-self: center;">Search:</label>
+                        <input type="text" placeholder="Search for Categories" name="search_field_content" id="search_field_content" required>
+                        <a href="/category" style="align-self: center;"><button class="search_book">SEARCH</button></a>
+                    </div>
+                </div>
+            </form>
+
+		</div>
+	</div>
+
+	<div class="category_table">
+		<table>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Category</th>
+					<th>Status</th>
+					<th>Creation Date</th>
+					<th>Updation Date</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% if filtered_category is defined and filtered_category %}
+				{% for category in categories %}
+				<tr>
+					<td>{{category.id}}</td>
+					<td>{{category.name}}</td>
+					<td class="{% if category.is_active %}active{% else %}inactive{% endif %}" id="status">
+                        {% if category.is_active %}
+                            <a href="">Active</a>
+                        {% else %}
+                            <a href="">Inactive</a>
+                        {% endif %}
+                    </td>
+					<td>{{category.creation_date}}</td>
+					<td>{{category.updation_date}}</td>
+					<td>
+						<!-- <button class="edit_btn">Edit</button> -->
+						<button class="delete_btn" onclick="deleteCategory({{category.id}})">Delete</button>
+					</td>
+				</tr>
+				{% endfor %}
+				{% else %}
+				{% for category in categories %}
+				<tr>
+					<td>{{category.id}}</td>
+					<td>{{category.name}}</td>
+					<td class="{% if category.is_active %}active{% else %}inactive{% endif %}" id="status">
+                        {% if category.is_active %}
+                            <a href="">Active</a>
+                        {% else %}
+                            <a href="">Inactive</a>
+                        {% endif %}
+                    </td>
+					<td>{{category.creation_date}}</td>
+					<td>{{category.updation_date}}</td>
+					<td>
+						<!-- <button class="edit_btn">Edit</button> -->
+						<button class="delete_btn" onclick="deleteCategory({{category.id}})">Delete</button>
+					</td>
+				</tr>
+				{% endfor %}
+				{% endif %}
+			</tbody>
+		</table>
+	</div>
+</div>
+</section>
+{% endblock %}

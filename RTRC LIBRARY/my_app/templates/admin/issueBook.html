@@ -1,0 +1,37 @@
+{% extends "/admin/manageBooks_base.html" %}
+{% block title %}Manage Books | Issue Books{% endblock %}
+{% block name %}Issue Books{% endblock %}
+{% block redirect %}<a href="/manageBooks"><button class="btn">Back</button></a>{% endblock %}
+{% block content %}
+<form method="POST" autocomplete="off" class="add_page" id="issue_book_form">
+    <div class="add_book"> 
+        <div class="book_info">
+            <h3>Issue A New Book</h3>
+        </div>
+
+        <div class="add_book_form">
+            <label for="book_id">Book ID*</label>
+            <input type="text" name="book_id" id="book_id" placeholder="Enter Book ID">
+
+            <label for="borrower_id">Borrower ID.*</label>
+            <input type="text" name="borrower_id" id="borrower_id" placeholder="example@rafikiwamaendeleo.org">
+
+            <label for="return_date">Return Date:</label>
+            <input type="date" id="return_date" name="return_date" class="form-control datepicker" style="margin-bottom: 2rem;">
+        </div>
+        <div class="action_btns">
+            <button type="submit" class="save" id="issue_book_btn">Issue Book</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    $(document).ready(function(){
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true
+        });
+    });
+</script>
+
+{% endblock %}

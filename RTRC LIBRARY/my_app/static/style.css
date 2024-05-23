@@ -1,0 +1,1485 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&family=Montserrat:wght@100;300&display=swap');
+/*.................base.html styling......................*/
+body{
+	overflow-x: hidden;
+	margin: 0;
+}
+
+html::-webkit-scrollbar{
+    width: 0.3rem;   
+}
+
+html::-webkit-scrollbar-track{
+    background: #fff;
+}
+
+html::-webkit-scrollbar-thumb{
+    background: chocolate;
+    border-radius: 0;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1050;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+}
+
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 10px;
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  outline: 0;
+}
+
+.modal-header {
+  padding: 15px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-title {
+  margin-bottom: 0;
+}
+
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 15px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px;
+  border-top: 1px solid #dee2e6;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-secondary {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+
+.btn-secondary:hover {
+  color: #212529;
+  background-color: #e2e6ea;
+  border-color: #dae0e5;
+}
+
+.close {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
+}
+
+.close:hover {
+  color: #000;
+  text-decoration: none;
+  opacity: 0.75;
+}
+
+
+
+.flash-message {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    max-width: 80%;
+}
+
+.site_header{
+	max-height: 30vh;
+	width: 100%;
+	padding-top: 0.8rem;
+	padding-bottom: 2rem;
+	background: maroon;
+	position: relative;
+}
+
+.site_header .logo{
+	background: darkorange;
+	padding-top: 0.7rem;
+	padding-bottom: 0.7rem;
+	margin-top: 0.7rem;
+	margin-left: 1rem;
+	margin-right: 1rem;
+	border-radius: 5px;
+	display: flex;
+	flex-flow: row;
+	border: 0.5px solid #ccc;
+	box-shadow:
+	    0 0 10px #6f4e37,
+	    -10px 0 20px #cb4335,
+	    10px 0 20px #6f4e37;
+}
+
+.site_header .logo img{
+	margin-left: 5rem;
+	padding: 0.3rem;
+	margin-right: 1rem;
+	height: 60px;
+	border-radius: 5px;
+	align-self: center;
+	background: #ccc;
+}
+
+.site_header .logo .logo_description{
+	margin-left: 2px;
+}
+
+.site_header .logo .logo_description .logo_header{
+	font-size: 20px;
+	font-weight: bolder;
+	font-display: block;
+	margin-top: 1rem;
+	text-transform: uppercase;
+	color: #070413;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.lib_navbar {
+	margin-bottom: 0;
+}
+
+.lib_navbar .lib_nav{
+	background-color: ghostwhite;
+	min-height: 10vh;
+}
+
+.lib_navbar .lib_nav .lib_nav_item{
+	float: right;
+	margin-right: 2rem;
+	margin-top: 1.5rem;
+}
+
+.lib_navbar .lib_nav .lib_nav_item a{
+	margin-right: 2rem;
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size: 20px;
+	color: black;
+	text-decoration: none;
+}
+
+.lib_navbar .lib_nav .lib_nav_item a:hover{
+	cursor: pointer;
+	border-bottom: 2px solid black;
+	transition: 0.2s ease;
+}
+
+hr{
+	color: 1px solid royalblue;
+}
+
+h4{
+	font-size: 20px;
+	margin-left: 3rem;
+	font-weight: bold;
+	padding: 0;
+	text-transform: uppercase;
+	opacity: 0.8;
+}
+
+.responsive_lib_navbar {
+    background-color: maroon;
+    inset: 20px 0px 30px;
+    max-height: 85vh;
+    width: 35rem;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    position: fixed;
+    top: 13rem;
+    left: 110%;
+    z-index: 1001;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.responsive_lib_navbar .responsive_lib_nav{
+	background-color: ghostwhite;
+    margin-top: 5px;
+    border-radius: 15px;
+    border: 1px solid #000;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.responsive_lib_navbar .responsive_lib_nav .responsive_lib_nav_item{
+	margin-top: 1rem;
+	font-size: 18px;
+}
+
+.responsive_lib_navbar .responsive_lib_nav .responsive_lib_nav_item a{
+	text-transform: uppercase;
+	font-weight: normal;
+	display: flex;
+	flex-flow: column;
+	font-size: 18px;
+	color: black;
+	background-color: transparent;
+	text-decoration: none;
+	margin-bottom: 1rem;
+}
+
+.responsive_lib_navbar .responsive_lib_nav .responsive_lib_nav_item a:hover{
+	cursor: pointer;
+	border-bottom: 2px solid black;
+	transition: 0.2s ease;
+}
+/*............end of base.hmtl styling........................*/
+
+
+/*...........admin styling...................*/
+.site_header .logo .logoutbtn{
+	position: relative;
+	margin-left: 20rem;
+	margin-top: 1rem;
+	align-self: center;
+}
+
+.site_header .logo .logoutbtn .btn{
+	font-weight: bold;
+	text-transform: uppercase;
+	background-color: red;
+	color: whitesmoke;
+	font-size: 17px;
+	opacity: 1;
+}
+
+.site_header .logo .logoutbtn .btn:hover{
+	opacity: 0.8;
+}
+
+.admin-panel-dash {
+	background: ghostwhite;
+}
+
+.admin-dash{
+	display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.admin-dash .dash-items{
+	border: 1px solid darkgray;
+	align-items: center;
+	text-align: center;
+	border-radius: 3px;
+	margin-bottom: 1rem;
+}
+
+.admin-dash .dash-items img {
+	margin-top: 0.3rem;
+}
+
+.admin-dash .dash-items .description{
+	text-transform: capitalize;
+	color: black;
+	font-size: 20px;
+}
+
+.admin-dash .dash-items .count p {
+	color: black;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.description i {
+	margin-top: 1rem;
+    font-size: 60px;
+    margin-right: 8px;
+}
+
+.description i .fa-book {
+    color: green;
+}
+
+.description i .fa-book-reader {
+    color: blue;
+}
+
+.description i .fa-list-alt {
+    color: maroon;
+}
+
+.description i .fa-users {
+    color: green;
+}
+
+.description i .fa-coins {
+    color: blue;
+}
+
+.manage-books {
+	min-height: 45vh;
+}
+
+.manageBooks_header{
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+
+.manageBooks_header h4 {
+	color: black;
+}
+
+.manageBooks_header .action_btn{
+	margin-right: 2rem;
+}
+
+.manageBooks_header .action_btn a button{
+	border-radius: 5px;
+	background-color: #fff;
+	border: 1px solid;
+	color: black;
+	padding-top: 0.3rem;
+	padding-right: 1.3rem;
+	padding-bottom: 0.3rem;
+	padding-left: 1.3rem;
+	opacity: 1;
+}
+
+.manageBooks_header .action_btn a button:hover{
+	background: #ccc;
+	transition: 0.5s;
+}
+
+.book_list_view{
+	position: relative;
+	border: 1px solid #808080;
+	border-radius: 5px;
+	margin-left: 1rem;
+	margin-right: 1rem;
+	margin-top: 2rem;
+	margin-bottom: 5rem;
+}
+
+.book_list_view .heading .table_head{
+	border-bottom: 1px solid #808080;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background-color: ghostwhite;
+}
+
+.book_list_view .heading .table_head h3{
+	margin-left: 1rem;
+	font-weight: normal;
+	font-size: 18px;
+	text-transform: capitalize;
+	align-self: center;
+	padding-top: 0.3rem;
+}
+
+.book_list_view .heading .book_search{
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+
+.book_list_view .heading .book_search .row_show{
+	float: left;
+	margin-top: 2px;
+	margin-left: 10px;
+}
+
+.book_list_view .heading .book_search .row_show .row{
+	margin-left: 0.5rem;
+	margin-top: 0.5rem;
+}
+
+.book_list_view .heading .book_search .row_show .row .list{
+	width: 70px;
+	background-color: ghostwhite;
+	border-radius: 3px;
+}
+
+.book_list_view .heading .book_search .row_show .row .list_label{
+	font-weight: normal;
+	font-size: 18px;
+	text-transform: capitalize;
+}
+
+.book_list_view .heading .book_search .search_area{
+	float: right;
+}
+
+.book_list_view .heading .book_search .search_area .search_items{
+	display: flex;
+	flex-flow: row;
+}
+
+.book_list_view .heading .book_search .search_area .search_items .search_label{
+	align-self: center;
+	font-weight: normal;
+	text-transform: capitalize;
+	margin-right: 2px;
+}
+
+.book_list_view .heading .book_search .search_area .search_items input[type="text"]{
+    width: 500px;
+    padding: 5px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
+
+.book_list_view .heading .book_search .search_area .search_items a button{
+	min-height: 30px;
+	font-size: 15px;
+	align-self: center;
+	margin-left: 1px;
+	margin-right: 1.1rem;
+	border-radius: 5px;
+	border: 1px solid black;
+}
+
+.book_list_view .heading .book_search .search_area .search_items a button:hover{
+	cursor: pointer;
+}
+
+.book_list_view .books_table{
+	margin-left: 1rem;
+	margin-right: 1rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.book_list_view .books_table table{
+	border-collapse: collapse;
+	width: 100%;
+	border: 1px solid #ddd;
+}
+
+.book_list_view .books_table table thead tr,
+.book_list_view .books_table table thead tr th,
+.book_list_view .books_table table tbody tr,
+.book_list_view .books_table table tbody tr td{
+	text-align: left;
+	padding: 3px;
+	border: 2px solid #ddd;
+	border-radius: 5px;
+}
+
+.book_list_view .books_table table thead tr th:last-child,
+.book_list_view .books_table table tbody tr td:last-child{
+	width: 20%;
+}
+
+.book_list_view .books_table table tbody tr td .edit_btn,
+.book_list_view .books_table table tbody tr td .delete_btn{
+	padding-top: 0.3rem;
+	padding-right: 1.3rem;
+	padding-bottom: 0.3rem;
+	padding-left: 1.3rem;
+	border-radius: 5px;
+	color: whitesmoke;
+}
+
+
+.book_list_view .books_table table tbody tr td .edit_btn{
+	background: dodgerblue;
+	opacity: 1;
+}
+
+.book_list_view .books_table table tbody tr td .delete_btn{
+	background: red;
+	opacity: 1;
+	margin-left: 0.5rem;
+}
+
+.book_list_view .books_table table tbody tr td .edit_btn:hover,
+.book_list_view .books_table table tbody tr td .delete_btn:hover{
+	opacity: 0.8;
+}
+
+.book_list_view .switch_pages {
+	float: right;
+	margin-top: 3px;
+}
+
+.book_list_view .switch_pages .switch_btns {
+	display: flex;
+	flex-flow: row;
+}
+
+.book_list_view .switch_pages .switch_btns .previous,
+.book_list_view .switch_pages .switch_btns .next {
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	margin-top: 0.5rem;
+	padding-top: 0.1rem;
+	padding-bottom: 0.1rem;
+	padding-left: 0.7rem;
+	padding-right: 0.7rem;
+}
+
+.book_list_view .switch_pages .switch_btns .previous{
+	background: #ccc;
+}
+
+.book_list_view .switch_pages .switch_btns .next {
+	background: #cc9c75;
+}
+
+.manage-category {
+	min-height: 45vh;
+}
+
+.category_header{
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+
+.category_header .action_btn{
+	margin-right: 2rem;
+}
+
+.category_header .action_btn a button{
+	border-radius: 5px;
+	background-color: #fff;
+	padding-top: 0.3rem;
+	padding-right: 1.3rem;
+	padding-bottom: 0.3rem;
+	padding-left: 1.3rem;
+	border: 1px solid black;
+}
+
+.category_header .action_btn a button:hover{
+	background: #ccc;
+	transition: 0.5s;
+}
+
+.category_list_view{
+	position: relative;
+	border: 1px solid #808080;
+	border-radius: 5px;
+	margin-left: 1rem;
+	margin-right: 1rem;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.category_list_view .heading .table_head{
+	border-bottom: 1px solid #808080;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background-color: ghostwhite;
+}
+
+.category_list_view .heading .table_head h3{
+	margin-left: 1rem;
+	font-weight: normal;
+	font-size: 15px;
+	text-transform: capitalize;
+	align-self: center;
+	padding-top: 0.3rem;
+}
+
+.category_list_view .heading .category_search{
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+
+.category_list_view .heading .category_search .row_show{
+	float: left;
+	margin-top: 2px;
+	margin-left: 10px;
+}
+
+.category_list_view .heading .category_search .row_show .row{
+	margin-left: 0.5rem;
+	margin-top: 0.5rem;
+}
+
+.category_list_view .heading .category_search .row_show .row .list{
+	width: 70px;
+	background-color: ghostwhite;
+	border-radius: 3px;
+}
+
+.category_list_view .heading .category_search .row_show .row .list_label{
+	font-weight: normal;
+	font-size: 15px;
+	text-transform: capitalize;
+}
+
+.category_list_view .heading .category_search .search_area{
+	float: right;
+}
+
+.category_list_view .heading .category_search .search_area .search_items{
+	display: flex;
+	flex-flow: row;
+}
+
+.category_list_view .heading .category_search .search_area .search_items .search_label{
+	align-self: center;
+	font-weight: normal;
+	text-transform: capitalize;
+	margin-right: 2px;
+}
+
+.category_list_view .heading .category_search .search_area .search_items input[type="text"]{
+    width: 500px;
+    padding: 5px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
+
+.category_list_view .heading .category_search .search_area .search_items button{
+	min-height: 30px;
+	font-size: 15px;
+	align-self: center;
+	margin-left: 1px;
+	margin-right: 1.1rem;
+	border-radius: 5px;
+	border: 1px solid black;
+}
+
+.category_list_view .heading .category_search .search_area .search_items button:hover{
+	cursor: pointer;
+}
+
+.category_list_view .category_table{
+	margin-left: 1rem;
+	margin-right: 1rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.category_list_view .category_table table{
+	border-collapse: collapse;
+	width: 100%;
+	border: 1px solid #ddd;
+}
+
+.category_list_view .category_table table thead tr,
+.category_list_view .category_table table thead tr th,
+.category_list_view .category_table table tbody tr,
+.category_list_view .category_table table tbody tr td{
+	text-align: left;
+	padding: 3px;
+	border: 2px solid #ddd;
+	border-radius: 5px;
+	vertical-align: middle;
+}
+
+.category_list_view .category_table table thead tr th:last-child,
+.category_list_view .category_table table tbody tr td:last-child{
+	width: 20%;
+}
+
+.active a{
+    background: #5cb85c;
+    color: white;
+    padding: 0.5rem;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.inactive a{
+    background: #f2dede;
+    padding: 0.5rem;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.active a:hover,
+.inactive a:hover{
+	text-decoration: none;
+	cursor: default;
+	color: white;
+}
+
+.category_list_view .category_table table tbody tr td .edit_btn,
+.category_list_view .category_table table tbody tr td .delete_btn{
+	padding-top: 0.3rem;
+	padding-right: 1.3rem;
+	padding-bottom: 0.3rem;
+	padding-left: 1.3rem;
+	border-radius: 5px;
+	color: whitesmoke;
+}
+
+
+.category_list_view .category_table table tbody tr td .edit_btn{
+	background: dodgerblue;
+	opacity: 1;
+}
+
+.category_list_view .category_table table tbody tr td .delete_btn{
+	background: red;
+	opacity: 1;
+	margin-left: 0.5rem;
+}
+
+.category_list_view .category_table table tbody tr td .edit_btn:hover,
+.category_list_view .category_table table tbody tr td .delete_btn:hover{
+	opacity: 0.8;
+}
+
+/* Popup container */
+.popup_container {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* Popup content */
+.popup_content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+}
+
+.close_btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close_btn:hover,
+.close_btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.category_input {
+	width: 450px;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.manage-users {
+	min-height: 45vh;
+}
+
+.manageUsers_header {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+
+.manageUsers_header h4 {
+	color: black;
+}
+
+.manageUsers_header .action_btn{
+	margin-right: 2rem;
+}
+
+.manageUsers_header .action_btn a button{
+	border-radius: 5px;
+	border: 1px solid black;
+	background-color: #fff;
+	padding-top: 0.3rem;
+	padding-right: 1.3rem;
+	padding-bottom: 0.3rem;
+	padding-left: 1.3rem;
+}
+
+.manageUsers_header .action_btn a button:hover{
+	background: #ccc;
+	transition: 0.5s;
+}
+
+
+.user_list_view{
+	position: relative;
+	border: 1px solid #808080;
+	border-radius: 5px;
+	margin-left: 1rem;
+	margin-right: 1rem;
+	margin-top: 2rem;
+}
+
+.user_list_view .heading .table_head{
+	border-bottom: 1px solid #808080;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background-color: ghostwhite;
+}
+
+.user_list_view .heading .table_head h3{
+	margin-left: 1rem;
+	font-weight: normal;
+	font-size: 15px;
+	text-transform: capitalize;
+	align-self: center;
+	padding-top: 0.3rem;
+}
+
+.user_list_view .heading .user_search{
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+
+.user_list_view .heading .user_search .row_show{
+	float: left;
+	margin-top: 2px;
+	margin-left: 10px;
+}
+
+.user_list_view .heading .user_search .row_show .row{
+	margin-left: 0.5rem;
+	margin-top: 0.5rem;
+}
+
+.user_list_view .heading .user_search .row_show .row .list{
+	width: 70px;
+	background-color: ghostwhite;
+	border-radius: 3px;
+}
+
+.user_list_view .heading .user_search .row_show .row .list_label{
+	font-weight: normal;
+	font-size: 15px;
+	text-transform: capitalize;
+}
+
+.user_list_view .heading .user_search .search_area{
+	float: right;
+}
+
+.user_list_view .heading .user_search .search_area .search_items{
+	display: flex;
+	flex-flow: row;
+}
+
+.user_list_view .heading .user_search .search_area .search_items .search_label{
+	align-self: center;
+	font-weight: normal;
+	text-transform: capitalize;
+	margin-right: 2px;
+}
+
+.user_list_view .heading .user_search .search_area .search_items input[type="text"]{
+    width: 500px;
+    padding: 5px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
+
+.user_list_view .heading .user_search .search_area .search_items a button{
+	min-height: 30px;
+	font-size: 15px;
+	align-self: center;
+	margin-left: 1px;
+	margin-right: 1.1rem;
+	border-radius: 5px;
+	border: 1px solid black;
+}
+
+.user_list_view .heading .user_search .search_area .search_items a button:hover{
+	cursor: pointer;
+}
+
+.user_list_view .user_table{
+	margin-left: 1rem;
+	margin-right: 1rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	overflow-x: auto;
+}
+
+.user_list_view .user_table table{
+	border-collapse: collapse;
+	width: 100%;
+	border: 1px solid #ddd;
+}
+
+.user_list_view .user_table table thead tr,
+.user_list_view .user_table table thead tr th,
+.user_list_view .user_table table tbody tr,
+.user_list_view .user_table table tbody tr td{
+	text-align: left;
+	padding: 3px;
+	border: 2px solid #ddd;
+	border-radius: 5px;
+}
+
+.user_list_view .user_table table thead tr th:last-child,
+.user_list_view .user_table table tbody tr td:last-child{
+	width: 20%;
+}
+
+.user_list_view .user_table table tbody tr td .suspend_btn,
+.user_list_view .user_table table tbody tr td .remove_btn{
+	padding-top: 0.3rem;
+	padding-right: 1.3rem;
+	padding-bottom: 0.3rem;
+	padding-left: 1.3rem;
+	border-radius: 5px;
+	color: whitesmoke;
+}
+
+
+.user_list_view .user_table table tbody tr td .suspend_btn{
+	background: dodgerblue;
+	opacity: 1;
+}
+
+.user_list_view .user_table table tbody tr td .remove_btn{
+	background: red;
+	opacity: 1;
+	margin-left: 0.5rem;
+}
+
+.user_list_view .user_table table tbody tr td .suspend_btn:hover,
+.user_list_view .user_table table tbody tr td .remove_btn:hover{
+	opacity: 0.8;
+}
+/*...........end of admin styling.............*/
+
+
+
+.site-footer {
+    background-color: maroon;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.contact-us {
+    display: flex;
+    flex-flow: row;
+    position: relative;
+    align-self: center;
+    padding: 1rem;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.site-footer a {
+    color: #fff;
+}
+
+.site-footer a:hover {
+    color: #fff;
+    transition: 0.3s;
+}
+
+.menu-container {
+	width: 100%;
+	height: 20px;
+	margin-top: 3rem;
+	margin-bottom: 1rem;
+	display: none;
+}
+
+#admin-menu-btn {
+	float: right;
+	color: black;
+	font-size: 20px;
+	margin-right: 3rem;
+}
+
+.responsive-logoutbtn {
+	margin-top: 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+
+.responsive-logoutbtn a {
+	display: block;
+	background-color: red;
+    color: black;
+    font-weight: normal;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.responsive-logoutbtn a .btn {
+	font-size: 18px;
+}
+
+.responsive-logoutbtn a:hover {
+	background-color: #f5f5f5;
+}
+
+.responsive-dropdown {
+    position: relative;
+}
+
+.responsive-dropdown-header {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+
+.responsive-dropdown-icon {
+	margin-top: 10px;
+/*	border: 1px solid #ccc;*/
+	font-size: 15px;
+}
+
+.responsive-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.responsive-dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.responsive-dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+
+
+
+
+
+
+
+
+@media(max-width:991px) {
+	html {
+		font-size: 55%;
+	}
+}
+
+@media(max-width:768px) {
+	.menu-container {
+		display: block;
+	}
+
+	#admin-menu-btn{
+		display: inline-block;
+	}
+
+	.site_header {
+		font-size: 18px;
+	}
+
+	.site_header .logo img {
+		height: 50px;
+	}
+
+	.site_header .logo .logoutbtn {
+		display: none;
+	}
+
+	.site_header .logo .logo_description .logo_header {
+		font-size: 16px;
+	}
+
+	.lib_navbar {
+		display: none;
+	}
+
+	.admin-dash {
+		margin-top: 3rem;
+		margin-bottom: 40vh;
+		font-size: 20px;
+		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	}
+
+	.responsive_lib_navbar,
+	.responsive_lib_navbar * {
+		font-size: 18px;
+	}
+
+	.responsive_lib_navbar.active {
+		left: 0;
+        font-size: 18px;
+        z-index: 1;
+        width: 35rem;
+	}
+
+	.manage-books {
+		min-height: 80vh;
+	}
+
+	.manage-books-section {
+		display: none;
+	}
+
+	.book_list_view, 
+    .book_list_view * {
+        font-size: 20px;
+    }
+
+
+	.book_list_view .heading .book_search {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+
+    .book_list_view .heading .book_search .row_show {
+        margin-left: 0;
+    }
+
+    .book_list_view .heading .book_search .row_show .row {
+        margin: 0.5rem 0;
+    }
+
+    .book_list_view .heading .book_search .row_show .row .list {
+        width: auto;
+        margin-right: 1rem;
+    }
+
+    .book_list_view .heading .book_search .row_show .row .list_label {
+        font-size: 14px;
+    }
+
+    .book_list_view .heading .book_search .search_area {
+        width: 100%;
+    }
+
+    .book_list_view .heading .book_search .search_area .search_items {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .book_list_view .heading .book_search .search_area .search_items label {
+    	display: none;
+    }
+
+
+    .book_list_view .heading .book_search .search_area .search_items .search_label,
+    .book_list_view .heading .book_search .search_area .search_items input[type="text"],
+    .book_list_view .heading .book_search .search_area .search_items a button {
+        margin: 0.5rem 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .book_list_view .books_table {
+        overflow-x: auto;
+    }
+
+    .book_list_view .books_table table {
+        width: 100%;
+        min-width: 600px;
+    }
+    .book_list_view .books_table table thead tr th:last-child,
+	.book_list_view .books_table table tbody tr td:last-child{
+		width: 20%;
+	}
+
+    .book_list_view .switch_pages {
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .book_list_view .switch_pages .switch_btns {
+        justify-content: center;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .book_list_view .switch_pages .switch_btns .previous,
+    .book_list_view .switch_pages .switch_btns .next {
+        width: 100px;
+    }
+
+    .category_header {
+    	display: none;
+    }
+
+    .category_list_view, 
+    .category_list_view * {
+        font-size: 20px;
+    }
+
+
+	.category_list_view .heading .category_search {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+
+    .category_list_view .heading .category_search .row_show {
+        margin-left: 0;
+    }
+
+    .category_list_view .heading .category_search .row_show .row {
+        margin: 0.5rem 0;
+    }
+
+    .category_list_view .heading .category_search .row_show .row .list {
+        width: auto;
+        margin-right: 1rem;
+    }
+
+    .category_list_view .heading .category_search .row_show .row .list_label {
+        font-size: 14px;
+    }
+
+    .category_list_view .heading .category_search form {
+    	width: 100%;
+    }
+
+    .category_list_view .heading .category_search .search_area {
+        width: 100%;
+    }
+
+    .category_list_view .heading .category_search .search_area .search_items {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .category_list_view .heading .category_search .search_area .search_items label {
+    	display: none;
+    }
+
+
+    .category_list_view .heading .category_search .search_area .search_items .search_label,
+    .category_view .heading .category_search .search_area .search_items input[type="text"],
+    .category_view .heading .category_search .search_area .search_items a button {
+        margin: 0.5rem 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .category_list_view .category_table {
+        overflow-x: auto;
+    }
+
+    .category_list_view .category_table table {
+        width: 100%;
+        min-width: 600px;
+    }
+    .category_list_view .category_table table thead tr th:last-child,
+	.category_list_view .category_table table tbody tr td:last-child{
+		width: 20%;
+	}
+
+    .category_list_view .switch_pages {
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .category_list_view .switch_pages .switch_btns {
+        justify-content: center;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .category_list_view .switch_pages .switch_btns .previous,
+    .category_list_view .switch_pages .switch_btns .next {
+        width: 100px;
+    }
+
+    .manage-users {
+    	min-height: 80vh;
+    }
+
+    .manageUsers_header {
+    	font-size: 18px;
+    }
+
+    .manageUsers_header h4 {
+    	display: none;
+    }
+
+    .manageUsers_header .action_btn button {
+    	font-size: 18px;
+    }
+
+    .user_list_view, 
+    .user_list_view * {
+        font-size: 20px;
+    }
+
+
+	.user_list_view .heading .user_search {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .user_list_view .heading .user_search .row_show {
+        margin-left: 0;
+    }
+
+    .user_list_view .heading .user_search .row_show .row {
+        margin: 0.5rem 0;
+    }
+
+    .user_list_view .heading .user_search .row_show .row .list {
+        width: auto;
+        margin-right: 1rem;
+    }
+
+    .user_list_view .heading .user_search .row_show .row .list_label {
+        font-size: 14px;
+    }
+
+    .user_list_view .heading .user_search form {
+    	width: 100%;
+    }
+
+    .user_list_view .heading .user_search .search_area {
+        width: 100%;
+    }
+
+    .user_list_view .heading .user_search .search_area .search_items {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .user_list_view .heading .user_search .search_area .search_items label {
+    	display: none;
+    }
+
+
+    .user_list_view .heading .user_search .search_area .search_items .search_label,
+    .user_list_view .heading .user_search .search_area .search_items input[type="text"],
+    .user_list_view .heading .user_search .search_area .search_items a button {
+        margin: 0.5rem 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .user_list_view .user_table {
+        overflow-x: auto;
+    }
+
+    .user_list_view .user_table table {
+        width: 100%;
+        min-width: 600px;
+    }
+    .user_list_view .user_table table thead tr th,
+	.user_list_view .user_table table tbody tr td{
+		overflow-x: auto;
+	}
+
+    .user_list_view .switch_pages {
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .user_list_view .switch_pages .switch_btns {
+        justify-content: center;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .user_list_view .switch_pages .switch_btns .previous,
+    .user_list_view .switch_pages .switch_btns .next {
+        width: 100px;
+    }
+
+    .button-actions {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+    }
+
+    .modal {
+    	width: 100%;
+    	height: 100%;
+    }
+
+    .modal,
+    .modal * {
+    	font-size: 18px;
+    }
+}
+
+@media(max-width:450px) {
+	html {
+		font-size: 50%;
+	}
+}

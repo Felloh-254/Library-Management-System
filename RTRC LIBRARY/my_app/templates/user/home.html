@@ -1,0 +1,367 @@
+{% extends "/user/base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<form id="responsive_search_form" method="POST" autocomplete="off" action="{{ url_for('userView.home') }}">
+    <div class="search-form-contents">
+        <div class="search_label_container">
+            <label for="search_book_criteria" class="search_label" style="color: #fff;">Search By:</label>
+        </div>
+        <select name="search_book_criteria" id="search_book_criteria" style="height: 40px; align-items: center; align-self: center; border: 1px solid #ccc; border-radius: 5px; background: ghostwhite;">
+            <option value="Title" id="Title" selected>Title</option>
+            <option value="Author" id="Author">Author</option>
+            <option value="ISBN" id="ISBN">ISBN No.</option>
+            <option value="Category" id="Category">Category</option>
+        </select>
+        <input type="text" name="search_field_content" id="search_field_content" placeholder="Search For Books..." autocomplete="off">
+        <button type="submit"><i class="fas fa-search"></i></button>
+    </div>
+</form>
+
+<section>
+    <div class="search_header">
+        <form class="search_form" id="search_form" method="POST" autocomplete="off" action="{{ url_for('userView.home') }}">
+            <div class="search_input">
+                <div class="search-contents">
+                    <div class="search_label_container">
+                        <label for="search_book_criteria" class="search_label">Search By:</label>
+                    </div>
+                    <select name="search_book_criteria" id="search_book_criteria_original" style="height: 40px; align-items: center; align-self: center; border: 1px solid #ccc; border-radius: 5px; background: ghostwhite;">
+                        <option value="Title" id="Title" selected>Title</option>
+                        <option value="Author" id="Author">Author</option>
+                        <option value="ISBN" id="ISBN">ISBN No.</option>
+                        <option value="Category" id="Category">Category</option>
+                    </select>
+                    <input type="text" name="search_field_content" id="search_field_content_original" placeholder="Search For Books..." autocomplete="off">
+                    <button type="submit"><i class="fas fa-search"> Search</i></button>
+                </div>
+            </div>
+        </form>
+
+        <i class="fas fa-search" id="search-button"> Search</i>
+
+        <div class="notification">
+            <span><i class="fas fa-bell"></i></span>
+        </div>
+
+        <div class="user_details">
+            <div class="dropdown">
+                <button class="dropbtn" style="padding-right: 1rem;"><i class="fas fa-cog"></i></button>
+                <div class="dropdown-content">
+                    <div class="dropdown-content">
+                        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="/support"><i class="fas fa-question-circle"></i> Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="user_image">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="user">
+                {{user.name}}
+            </div>
+        </div>
+        <div class="fas fa-bars" id="user-menu-btn"></div>
+    </div>
+</section>
+
+
+
+<section class="searched-books">
+    <div class="default-display" id="default-display">
+        <h1 style="color: white; margin-bottom: 1rem; text-transform: capitalize; font-weight: normal;">Dashboard</h1>
+        <div class="user-dash">
+            <div class="user-dash-items">
+                <div class="description">
+                    <i class="fas fa-book"></i> 
+                    <p>My Library</p>
+                </div>
+
+                <div class="count">
+                    <p>{{total_library_books}}</p>
+                </div>
+            </div>
+
+            <div class="user-dash-items">
+                <div class="description">
+                    <i class="fas fa-heart"></i> 
+                    <p>Favourites</p>
+                </div>
+
+                <div class="count">
+                    <p>{{total_favourite_books}}</p>
+                </div>
+            </div>
+
+            <div class="user-dash-items">
+                <div class="description">
+                    <i class="fas fa-book-reader"></i> 
+                    <p>Issued Books</p>
+                </div>
+
+                <div class="count">
+                    <p>{{total_issued_books}}</p>
+                </div>
+            </div>
+
+            <div class="user-dash-items">
+                <div class="description">
+                    <i class="fas fa-book"></i> 
+                    <p>Pending Requests</p>
+                </div>
+
+                <div class="count">
+                    <p>{{total_pending_requests}}</p>
+                </div>
+            </div>
+        </div>
+
+        <h6 class="recommended-books">Recommended Books</h6>
+        <div class="recommended-books-grid" id="recommended-books-grid">
+            {% for book in random_books %}
+            <div class="book-item">
+                {% if book.preview %}
+                    <div class="book-preview">
+                        <img src="{{ url_for('static', filename='Book_previews/' + book.preview) }}" alt="{{book.title}}">
+                    </div>
+                {% else %}
+                    <div class="book-preview">
+                        <h3>Preview not available</h3>
+                    </div>
+                {% endif %}
+
+                <h6 style="font-size: 15px;">{{ book.title }}</h6>
+                <p style="font-size: 13px; font-style: italic;">{{ book.author }}</p>
+                <!-- <p>Book NO: {{ book.ISBN }}</p> -->
+                <div class="action_btns">
+                    <form action="{{ url_for('userView.request_book') }}" method="POST">
+                        <input type="hidden" name="book_id" value="{{ book.id }}">
+                        <button type="submit" name="action" value="request_book" data-action="request_book">
+                            <i class="fas fa-envelope white-fill"></i>
+                            <span class="tooltip">Request this book</span>
+                        </button>
+                    </form>
+
+
+                    <form action="{{ url_for('userView.toggle_favorite') }}" method="POST" style="margin-left: 1rem;">
+                        <input type="hidden" name="book_id" value="{{ book.id }}">
+                        <button type="submit" name="action" value="toggle_favorite" data-action="toggle_favorite" {% if book.id in favorite_book_ids %}class="in-favorites"{% endif %}>
+                            {% if book.id in favorite_book_ids%}
+                                <i class="fas fa-heart white-fill" style="color: maroon;"></i>
+                                <span class="tooltip">In Favorites</span>
+                            {% else %}
+                                <i class="fas fa-heart white-fill"></i>
+                                <span class="tooltip">Add to Favorites</span>
+                            {% endif %}
+                        </button>
+                    </form>
+
+                    <form action="{{ url_for('userView.toggle_library') }}" method="POST" style="margin-left: 1rem;">
+                        <input type="hidden" name="book_id" value="{{ book.id }}">
+                        <button type="submit" name="action" value="toggle_library" data-action="toggle_library" {% if book.id in library_book_ids %}class="in-library"{% endif %}>
+                            {% if book.id in library_book_ids %}
+                                <i class="fas fa-check-circle white-fill"></i>
+                                <span class="tooltip">In Library</span>
+                            {% else %}
+                                <i class="fas fa-plus-circle white-fill"></i>
+                                <span class="tooltip">Add to Library</span>
+                            {% endif %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$(document).ready(function() {
+    function showFlashMessage(message, type) {
+        // Create flash message element
+        const flashMessage = document.createElement('div');
+        flashMessage.textContent = message;
+
+        // Define CSS styles based on message type
+        const styles = `
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            z-index: 9999;
+        `;
+
+        // Apply type-specific styles
+        switch (type) {
+            case 'success':
+                flashMessage.style.backgroundColor = 'green';
+                break;
+            case 'error':
+                flashMessage.style.backgroundColor = 'red';
+                break;
+            case 'info':
+                flashMessage.style.backgroundColor = 'blue';
+                break;
+            case 'warning':
+                flashMessage.style.backgroundColor = 'orange';
+                break;
+            default:
+                flashMessage.style.backgroundColor = 'gray';
+                break;
+        }
+
+        // Apply common styles
+        flashMessage.style.cssText += styles;
+
+        // Append flash message to the document body
+        document.body.appendChild(flashMessage);
+
+        // Set timeout to remove flash message after 2 seconds
+        setTimeout(() => {
+            flashMessage.remove();
+        }, 2000);
+    }
+
+    // Request a book
+    $('.action_btns form[action="/request_book"]').submit(function(event) {
+        event.preventDefault();
+        
+        let bookId = $(this).find('input[name="book_id"]').val();
+
+        $.ajax({
+            url: '/request_book',
+            method: 'POST',
+            data: { book_id: bookId },
+            success: function(response) {
+                showFlashMessage(response.message, 'success'); // Show success message
+            },
+            error: function(response) {
+                showFlashMessage(response.message, 'error'); //Show error flash message
+            }
+        });
+    });
+
+    // Holding a book
+    $('.action_btns form[action="/hold_book"]').submit(function(event) {
+        event.preventDefault();
+        
+        let bookId = $(this).find('input[name="book_id"]').val();
+
+        $.ajax({
+            url: '/hold_book',
+            method: 'POST',
+            data: { book_id: bookId },
+            success: function(response) {
+                showFlashMessage(response.message, 'success'); // Show success message
+            }
+        });
+    });
+
+    // Toggle favorite
+    $('.action_btns form[action="/toggle_favorite"]').submit(function(event) {
+        event.preventDefault();
+        
+        let bookId = $(this).find('input[name="book_id"]').val();
+
+        $.ajax({
+            url: '/toggle_favorite',
+            method: 'POST',
+            data: { book_id: bookId },
+            success: function(response) {
+                showFlashMessage(response.message, 'info'); // Show info message
+                // Update UI (e.g., change color and icon of favorite button)
+                const favoriteButton = $(this).find('button[name="action"]');
+                if (response.message.includes('added')) {
+                    favoriteButton.css('color', 'maroon');
+                    favoriteButton.attr('tooltip', 'Remove From Favourites');
+                } else {
+                    favoriteButton.css('color', 'black');
+                    favoriteButton.attr('tooltip', 'Add To Favourites');
+                }
+            }.bind(this)
+        });
+    });
+
+    // Toggle library
+    $('.action_btns form[action="/toggle_library"]').submit(function(event) {
+        event.preventDefault();
+        
+        let bookId = $(this).find('input[name="book_id"]').val();
+
+        $.ajax({
+            url: '/toggle_library',
+            method: 'POST',
+            data: { book_id: bookId },
+            success: function(response) {
+                showFlashMessage(response.message, 'success'); // Show warning message
+                // Update UI (e.g., change color and icon of library button)
+                const libraryButton = $(this).find('button[name="action"]');
+                if (response.message.includes('added')) {
+                    libraryButton.html('<i class="fas fa-check-circle"></i>');
+                    libraryButton.attr('tooltip', 'Remove From Library');
+                } else {
+                    libraryButton.html('<i class="fas fa-plus-circle"></i>');
+                    libraryButton.attr('tooltip', 'Add To Library');
+                }
+            }.bind(this)
+        });
+    });
+
+
+    // Search form submission for width min(991px)
+    $('#search_form').submit(function(event) {
+        event.preventDefault();
+
+        let formData = {
+            'search_book_criteria': $('#search_book_criteria_original').val(),
+            'search_field_content': $('#search_field_content_original').val()
+        };
+
+        console.log("data: ",formData)
+
+        $.ajax({
+            url: '/home',
+            method: 'POST',
+            data: formData,
+            success: function(response) {
+                // Insert the returned HTML into the #default-display div
+                $('#default-display').html(response);
+            }
+        });
+    });
+
+    // Search form submission for media of max-width(760px)
+    $('#responsive_search_form').submit(function(event) {
+        event.preventDefault();
+
+        let formData = {
+            'search_book_criteria': $('#search_book_criteria').val(),
+            'search_field_content': $('#search_field_content').val()
+        };
+
+        console.log("data: ",formData)
+
+        $.ajax({
+            url: '/home',
+            method: 'POST',
+            data: formData,
+            success: function(response) {
+                // Insert the returned HTML into the #default-display div
+                $('#default-display').html(response);
+            }
+        });
+    });
+});
+
+</script>
+
+
+
+
+{% endblock %}

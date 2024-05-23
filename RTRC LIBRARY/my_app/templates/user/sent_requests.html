@@ -1,0 +1,77 @@
+{% extends "/user/base.html" %}
+{% block title %}Borrowed Books{% endblock %}
+{% block content %}
+
+<section class="borrowed-books">
+    <div class="setting-support-container">
+        <div class="support-container-content">
+            <div class="notification">
+                <span><i class="fas fa-bell"></i></span>
+            </div>
+            <div class="user_details">
+                <div class="dropdown">
+                    <button class="dropbtn" style="padding-right: 0.3rem;"><i class="fas fa-cog"></i></button>
+                    <div class="dropdown-content">
+                        <div class="dropdown-content">
+                            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="/support"><i class="fas fa-question-circle"></i> Support</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user_image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user">
+                    {{user.name}}
+                </div>
+                <div class="back">
+                    <a href="/borrowedBooks" style="margin-left: 2rem;"><button type="submit" style="padding-top: 0.2rem; padding-bottom: 0.2rem; padding-left: 0.7rem; padding-right: 0.7rem; border-radius: 5px;">Back</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p style="margin-top: 1rem;">Below are your pending book requests.</p>
+    <div class="borrowed-books-list">
+
+        <div class="borrowed-books-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Book Title</th>
+                        <th>Book Number</th>
+                        <th>Date Requsted</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="borrowed-book-data">
+                    {% if requests %}
+                        {% for book in requests %}
+                            <tr>
+                                <td></td>
+                                <td>{{book.books.title}}</td>
+                                <td>{{book.books.ISBN}}</td>
+                                <td>{{book.request_date}}</td>
+                                <td>{{book.status}}</td>
+                                <td>
+                                    <form method="POST" action="{{url_for('userView.processRequestDeletion')}}">
+                                        <input type="hidden" name="book_id" value="{{book.books.id}}">
+                                        <button type="submit">Cancel Request</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="6">No books to show</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

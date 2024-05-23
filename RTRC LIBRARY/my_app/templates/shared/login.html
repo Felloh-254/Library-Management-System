@@ -1,0 +1,125 @@
+{% extends "/shared/base.html" %}
+{% block title %}User | Login{% endblock %}
+{% block content %}
+
+<form method="POST" class="login-form" id="login-form" action="{{ url_for('auth.login')}}">
+<div class="login">  
+    <div class="login_container" id="login">
+        <div class="form-header">
+            <h3 style="font-size: 20px; font-weight: bold;">Login</h3>
+        </div>
+        <label for="email"><b>Email</b></label>
+        <input type="email" placeholder="Enter email" name="email" id="email" autocomplete="off" autofocus required>
+
+        <div class="form__input-group">
+            <label for="password"><b>Password*</b></label>
+            <div class="passwordToggle">
+                <input type="password" placeholder="Enter Password" name="password" id="password" class="form__input" autofocus required>
+                <span class="icon">
+                    <i class="fas fa-eye-slash"></i>
+                </span>
+            </div>
+            <div class="form__input-error-message"></div>
+        </div>
+
+        <a href="#"><button type="submit" class="login-btn">Login</button></a>
+
+        <div class="switch">
+            <p>Dont have an account? <a href="/signup">Sign Up</a></p>
+        </div>
+    </div>
+</div>
+</form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Select the password input field and the eye icon
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.querySelector(".icon");
+
+        // Add click event listener to the eye icon
+        togglePassword.addEventListener("click", function() {
+            // Check if the type of password input field is "password"
+            if (passwordInput.type === "password") {
+                // Change it to "text" to make the password visible
+                passwordInput.type = "text";
+                // Change the eye icon to a slash
+                togglePassword.innerHTML = '<i class="fas fa-eye"></i>';
+            } else {
+                // If it's already visible, change it back to "password"
+                passwordInput.type = "password";
+                // Change the eye icon back to an eye
+                togglePassword.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            }
+        });
+
+        function showFlashMessage(message, type) {
+            // Create flash message element
+            const flashMessage = document.createElement('div');
+            flashMessage.textContent = message;
+
+            // Define CSS styles based on message type
+            const styles = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 10px 20px;
+                border-radius: 5px;
+                color: white;
+                font-weight: bold;
+                z-index: 9999;
+            `;
+
+            // Apply type-specific styles
+            switch (type) {
+                case 'success':
+                    flashMessage.style.backgroundColor = 'green';
+                    break;
+                case 'error':
+                    flashMessage.style.backgroundColor = 'red';
+                    break;
+                case 'info':
+                    flashMessage.style.backgroundColor = 'blue';
+                    break;
+                case 'warning':
+                    flashMessage.style.backgroundColor = 'orange';
+                    break;
+                default:
+                    flashMessage.style.backgroundColor = 'gray';
+                    break;
+            }
+
+            // Apply common styles
+            flashMessage.style.cssText += styles;
+
+            // Append flash message to the document body
+            document.body.appendChild(flashMessage);
+
+            // Set timeout to remove flash message after 2 seconds
+            setTimeout(() => {
+                flashMessage.remove();
+            }, 2000);
+        }
+
+        // // On pressing the login button
+        // $('#login-form').submit(function(event) {
+        //     event.preventDefault();
+
+        //     let email = $(this).find('input[name="email"]').val();
+        //     let password = $(this).find('input[name="password"]').val();
+
+        //     $.ajax ({
+        //         url: '/login',
+        //         method: 'POST',
+        //         data: { email: email, password: password }
+        //         error: function(response) {
+        //             const message = response.responseJSON ? response.responseJSON.message : 'An error occurred';
+        //             showFlashMessage(message, 'error');
+        //         }
+        //     });
+        // });
+    });
+</script>
+{% endblock %}

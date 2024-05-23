@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rarieda Technical And Resource Center Library</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base_shared.css')}}">
+        <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+    <section class="site_header fixed-navbar">
+        <div class="logo">
+            <img src="{{url_for('static', filename='/Images/RTRC-Logo-No-Background-300x113 .png')}}" id="home-section-logo-img">
+            <div class="logo_content">
+                <div class="logo_description">
+                    <p class="logo_header" style="display: flex; flex-direction: column;"> rarieda training and<span> resource center Library</span></p>
+                </div>
+                <div class="lib_nav_item">
+                    <a href="/">Home</a>
+                    <a href="/login">Login</a>
+                    <a href="/signup">Signup</a>
+                    <!--<a href="/login">user login</a>-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="popup-nav">
+        <span aria-hidden="true" class="closeBtn" style="float: right; margin-right: 1rem; font-size: 25px; color: #fff; margin-bottom: 3rem;">&times;</span>
+        <div class="hidden-container">
+            <div class="items">
+                <a href="/">Home</a>
+                <a href="/login">Login</a>
+                <a href="/signup">Signup</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed-popup-nav">
+        <span aria-hidden="true" style="float: right; margin-right: 1rem; font-size: 25px; color: #fff; margin-bottom: 3rem;">&times;</span>
+        <div class="hidden-container">
+            <div class="items">
+                <a href="/">Home</a>
+                <a href="/login">Login</a>
+                <a href="/signup">Signup</a>
+            </div>
+        </div>
+    </div>
+
+<section class="home-section">
+    <div class="home-container">
+        <div class="welcome-card">
+            <div class="home-section-logo">
+                <div class="logo-container">
+                    <img src="{{url_for('static', filename='/Images/RTRC-Logo-No-Background-300x113 .png')}}" id="home-section-logo-img">
+                    <div class="home-section-logo-description">
+                        <p class="home-section-logo-header" style="display: flex; flex-direction: column;"> rarieda training and<span> resource center Library</span></p>
+                    </div>
+                </div>
+
+
+                <div class="home-section-logo-content">
+                    <div class="home-section-lib-nav-item">
+                        <a href="/">Home</a>
+                        <span style="margin-right: 1rem; color: burlywood;">|</span>
+                        <a href="/login">Login</a>
+                        <span style="margin-right: 1rem; color: burlywood;">|</span>
+                        <a href="/signup">Signup</a>
+                        <!--<a href="/login">user login</a>-->
+                    </div>
+                </div>
+                <div class="menu-container">
+                    <div class="fas fa-bars" id="menu-btn"></div>
+                </div>
+            </div>
+
+            <h1>Welcome to Rarieda Training And Resource Center Library</h1>
+            <div class="welcome-message">
+                <div class="welcome-message-content">  
+                    <p class="typed-text">We are registered with Kenya Library Association(KLA), both an academic and community library, situated at Rafiki Wa Maendeleo Trust, Lusi village in Rarieda Sub-county.</p>
+                    <p>We boast of a well-developed collection of books and other information resources that support the research, innovation, and academic excellence of our Users.</p>
+                    <p>We offer a good spacious reading environment, internet access, and well-sorted references for our diverse users.</p>
+                </div>
+
+                <div class="home-container-links">
+                    <div class="redirect-link">
+                        <a href="#card-display"><button>Get To Know More</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-row">
+            <div class="card-display" id="card-display">
+                <div class="first card">
+                    <h2>RTRCL(Rarieda Training And Resource Center Library)</h2>
+                    <p><b>Our Goal and Aim is to;</b></p>
+                    <p>
+                        <ol>
+                            <li>Promote Literacy in Rarieda Sub-county by encouraging a Love for Reading for RTRC students and the Rarieda Community.</li>
+                            <li>Support Education by offering Resources and Services that Complement Curriculum in the RTRC College and the partner Schools in Rarieda sub county.</li>
+                            <li>Community Engagement and Digital Literacy by facilitating digital skills and engaging the community and facilitating social interaction at the Library for members to connect, interact, and collaborate</li>
+                        </ol>
+                    </p>
+                    <p><b>Our Objectives as a Department is to;</b></p>
+                    <p>
+                        <ol>
+                            <li>Expand our Collection to include Local Content books to facilitate Cultural Diversion.</li>
+                            <li>Collaborate with Educational Institutions to support Literacy works and academic improvements within Rarieda.</li>
+                            <li>Enhance Facilities and services to conform with current trends in Library world.</li>
+                        </ol>
+                    </p>
+
+                    <p>Our Operating time is between 8am to 5:30 pm Monday to Friday.</p>
+                    <p>We are proud of our donors who supplies us with Yearly Book donations + other Library supplies, American Friends of Kenya (AFK).</p>
+                </div>
+
+
+
+                <div class="second">
+                    <h2>RTRC(Rarieda Training And Resource Center)</h2>
+                    <p>Our coursework is based on Experiential Learning, or learning by doing. Students are able to quickly apply what they have learned in the classroom – 80% of their time is spent in workshops for practical training.</p>
+                    <h3>RESULTS</h3>
+                    <p>A by-product of students gaining immediate practical experience is the availability of products (produce, fashion & design, carpentry, etc.) and services (hair & beauty, ploughing, water delivery, etc.) to the general public.</p>
+                    <p>READY TO START YOUR NEW CAREER?</p>
+                </div>
+            </div>
+
+            <div class="card-container">
+            </div>
+
+            <div class="mission-container">
+                <div class="third card-slide">
+                    <h2>RARIEDA TRAINING & RESOURCE CENTRE</h2>
+                    <h3>Mission & Vision</h3>
+                    <p>Our vision is to be a leading regional centre of excellence in technical vocational training, community development and evidence-based training. Our mission: To improve and enrich the lives of the youth and the community by providing holistic and quality technical vocational training and community development.</p>
+                    <a href="https://www.rtrc.ac.ke" target="_blank">Learn More</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      {% if category == "error" %}
+        <div class="flash-message {{ category }}" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;">
+      {% elif category == "info" %}
+        <div class="flash-message {{ category }}" style="background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb;">
+      {% elif category == "warning" %}
+        <div class="flash-message {{ category }}" style="background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba;">
+      {% else %}
+        <div class="flash-message {{ category }}" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;">
+      {% endif %}
+          <div class="message-content">
+            {{ message }}
+            <button type="button" class="close" onclick="this.parentElement.parentElement.style.display='none';">
+              <span aria-hidden="true" style="margin-left: 1rem">&times;</span>
+            </button>
+          </div>
+        </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% block content %}
+{% endblock %}
+
+<div class="scroll-to-top-popup">
+    <button id="scrollToTopBtn">↑</button>
+</div>
+
+<div class="floating-menu">
+    <div class="fas fa-bars" id="floating-menu-btn"></div>
+</div>
+
+
+<footer class="site-footer">
+        <div class="contact-us">
+            <!-- <i class="fa fa-copyright" style="margin-right: 0.5rem; align-self: center;"></i>
+            <p style="margin-right: 0.5rem; margin-left: 0.3rem;">Rafiki Wa Maendeleo 2024</p> -->
+            <a href="mailto:felixogweny@gmail.com" style="margin-right: 0.5rem;"><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i>felixogweny@gmail.com</a>
+            <a href="#" style="margin-right: 0.5rem;"><i class="fab fa-facebook" style="margin-right: 0.5rem;"></i></a>
+            <a href="#" style="margin-right: 0.5rem;"><i class="fab fa-twitter" style="margin-right: 0.5rem;"></i></a>
+            <a href="#" style="margin-right: 0.5rem;"><i class="fab fa-instagram" style="margin-right: 0.5rem;"></i></a>
+        </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('scroll', () => {
+        const cardSlides = document.querySelectorAll('.card-slide');
+    
+        cardSlides.forEach((cardSlide) => {
+            const slidePosition = cardSlide.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (slidePosition < windowHeight / 1.5) { // Adjust threshold as needed
+                cardSlide.classList.add('slide-in');
+            }
+        });
+
+        const header = document.querySelector('.site_header');
+        const homeSectionLogo = document.querySelector('.home-section-logo');
+        // const welcomeMessageBottom = welcomeMessage.getBoundingClientRect().bottom;
+
+        const scrollPosition = window.scrollY;
+        
+        // Calculate the bottom position of the welcome message dynamically
+        const welcomeMessageBottom = homeSectionLogo.getBoundingClientRect().bottom;
+        
+        // Check if the scroll position is below the bottom of the welcome message
+        if (scrollPosition >= welcomeMessageBottom) {
+            header.classList.add('show');
+        } else {
+            header.classList.remove('show');
+        }
+
+        const scrollToTopPopup = document.querySelector('.scroll-to-top-popup');
+
+        // const scrollPosition = window.scrollY;
+        
+        // Check if the scroll position is below the header to show the popup
+        if (scrollPosition > header.offsetHeight) {
+            scrollToTopPopup.style.display = 'block';
+        } else {
+            scrollToTopPopup.style.display = 'none';
+        }
+
+        const floatingMenu = document.querySelector('.floating-menu');
+        // Check if the scroll position is below the header to show the popup
+        if(scrollPosition > header.offsetHeight) {
+            floatingMenu.style.display = 'block';
+        } else {
+            floatingMenu.style.display = 'none';
+        }
+    });
+
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    let navbar = document.querySelector(".popup-nav");
+    document.getElementById("menu-btn").onclick = () => {
+        navbar.classList.toggle('active');
+    }
+
+    let fixedNavbar = document.querySelector(".fixed-popup-nav");
+    document.getElementById("floating-menu-btn").onclick = () => {
+        fixedNavbar.classList.toggle('active');
+    }
+
+    window.onscroll = () => {
+        navbar.classList.remove('active');
+        fixedNavbar.classList.remove('active');
+    }
+
+    document.querySelector(".closeBtn").onclick = () => {
+        fixedNavbar.classList.remove('active');
+        navbar.classList.remove('active');
+    }
+});
+
+</script>
+</body>
+</html>

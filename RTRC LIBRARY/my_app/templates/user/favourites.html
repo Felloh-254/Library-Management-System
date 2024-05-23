@@ -1,0 +1,79 @@
+{% extends "/user/base.html" %}
+{% block title %}My Library{% endblock %}
+{% block content %}
+
+<section class="borrowed-books">
+    <div class="setting-support-container">
+        <div class="support-container-content">
+            <div class="notification">
+                <span><i class="fas fa-bell"></i></span>
+            </div>
+            <div class="user_details">
+                <div class="dropdown">
+                    <button class="dropbtn" style="padding-right: 0.3rem;"><i class="fas fa-cog"></i></button>
+                    <div class="dropdown-content">
+                        <div class="dropdown-content">
+                            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="/support"><i class="fas fa-question-circle"></i> Support</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user_image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user">
+                    {{user.name}}
+                </div>
+                <div class="fas fa-bars" id="user-menu-btn" style="margin-left: 2rem;"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="borrowed-books-list" style="margin-top: 0.5rem;">
+        <div class="heading">
+            <div class="table_head">
+                <h6>Favourites</h6>
+            </div>
+        </div>
+
+        <div class="borrowed-books-table" >
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Book Title</th>
+                        <th>Book Author</th>
+                        <th>Book Number</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="borrowed-book-data">
+                    {% if favourite_books %}
+                        {% for book in favourite_books %}
+                        <tr>
+                            <td></td>
+                            <td>{{ book.books.title }}</td>
+                            <td>{{ book.books.author }}</td>
+                            <td>{{ book.books.ISBN }}</td>
+                            <form method="POST" action="{{url_for('userView.deleteFromMyFavourites')}}">
+                                <td>
+                                    <input type="hidden" name="book_id" value="{{book.books.id}}">
+                                    <button type="submit" style="background: red; color: white; border-radius: 5px;">Remove</button>
+                                </td>
+                            </form>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="5">No books to show</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

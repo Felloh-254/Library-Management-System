@@ -1,0 +1,45 @@
+{% extends "/admin/manageBooks_base.html"%}
+{% block title %}Manage Books | Add Books{% endblock %}
+{% block name %}Add Books{% endblock %}
+{% block redirect %}<a href="/manageBooks"><button class="btn">Back</button></a>{% endblock %}
+{% block content %}
+<form method="POST" autocomplete="off" class="add_page" enctype="multipart/form-data">
+    <div class="add_book"> 
+    	    <div class="book_info">
+	            <h3>Book Information</h3>
+	        </div>
+
+	        <div class="add_book_form">
+				<label for="category">Category*</label>
+				<select name="category" id="category" style="height: 40px; margin-bottom: 1rem;">
+				    <option value="" selected disabled>Select category</option>
+				    {% for category in categories %}
+				    <option value="{{ category.name }}">{{ category.name }}</option>
+				    {% endfor %}
+				</select>
+
+				<label for="title">Book name*</label>
+				<input type="text" name="title" id="title" placeholder="Enter Book Title">
+
+				<label for="author">Author*</label>
+				<input type="text" name="author" id="author">
+
+				<label for="copies">No. of Copies*</label>
+				<input type="text" name="copies" id="copies">
+
+
+				<label for="isbn_no">ISBN No.*</label>
+				<input type="text" name="isbn_no" id="isbn_no">
+
+				<label for="book_preview">Insert Preview</label>
+				<input type="file" name="book_preview" id="book_preview">
+
+	        </div>
+	        <div class="action_btns">
+		          <a href="/manageBooks/addBook"><button type="submit" class="save">Save Book</button></a>
+	        </div>
+    </div>
+</form>
+ {% endblock %}
+
+ 
